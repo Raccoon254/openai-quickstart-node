@@ -27,7 +27,7 @@
   padding-top: 60px;
 }
 .main .icon {
-  width: 34px;
+  width: 70px;
 }
 .main h3 {
   font-size: 32px;
@@ -39,7 +39,7 @@
 .main form {
   display: flex;
   flex-direction: column;
-  width: 320px;
+  width: 90%;
 }
 .main input[type="text"] {
   padding: 12px 16px;
@@ -64,4 +64,57 @@
 .main .result {
   font-weight: bold;
   margin-top: 40px;
+}
+
+
+.chatContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  width: 90%;
+  word-wrap: break-word;
+}
+
+.repliedMessage {
+  grid-column: 2/5;
+  background-color: #adafab;
+  align-self: flex-end;
+  color: #02373193;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  white-space: pre-wrap; /* Preserve newlines and spaces */
+}
+
+.repliedMessage.typing::after {
+  content: "|";
+  display: inline-block;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.sentMessage{
+  grid-column: 1/4;
+  padding: 10px;
+  border-radius: 4px;
+  background: #0000ff33;
+  width: 50%;
+  height: fit-content;
+}
+
+.messageCont{
+  display: grid;
+  grid-auto-columns: 1fr 1fr 1fr 1fr 1fr;
 }
