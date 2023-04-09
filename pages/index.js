@@ -8,7 +8,6 @@ export default function Home() {
 
   const [messages, setMessages] = useState([]);
 
-
   async function onSubmit(event) {
     event.preventDefault();
     try {
@@ -19,12 +18,12 @@ export default function Home() {
         },
         body: JSON.stringify({ animal: animalInput }),
       });
-  
+
       const data = await response.json();
       if (response.status !== 200) {
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
-  
+
       setMessages([...messages.slice(0, -1), { message: animalInput, reply: data.result, typing: true }]);
       setTimeout(() => {
         setMessages((messages) =>
@@ -40,7 +39,9 @@ export default function Home() {
       alert(error.message);
     }
   }
-  
+
+  const isPromtEmpty = animalInput.trim().length == 0;
+  //alert (isPromtEmpty)
 
   return (
     <div>
@@ -53,7 +54,7 @@ export default function Home() {
         <img src="/fav.png" className={styles.icon} />
         <h3>kenTom™️</h3>
         <div className={styles.chatContainer}>
-        {messages.map((item, index) => (
+          {messages.map((item, index) => (
             <div key={index} className={styles.messageCont}>
               <p className={styles.sentMessage}>{item.message}</p>
               <p className={`${styles.repliedMessage} ${item.typing ? styles.typing : ""}`}>
@@ -65,8 +66,7 @@ export default function Home() {
               </p>
             </div>
           ))}
-
-          </div>
+        </div>
         <form onSubmit={onSubmit}>
           <input
             type="text"
@@ -75,10 +75,9 @@ export default function Home() {
             value={animalInput}
             onChange={(e) => setAnimalInput(e.target.value)}
           />
-          <input type="submit" value="Reply" />
+          <input type="submit" value="Reply" disabled={isPromtEmpty} />
         </form>
         <div className={styles.result}>{result}</div>
-        
       </main>
     </div>
   );
