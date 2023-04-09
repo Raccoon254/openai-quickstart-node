@@ -5,9 +5,13 @@ import styles from "./index.module.css";
 export default function Home() {
   const [animalInput, setAnimalInput] = useState("");
   const [result, setResult] = useState();
-
+  const [inputEmpty, setInputEmpty] = useState(true);
   const [messages, setMessages] = useState([]);
 
+  function handleInput(event) {
+    setAnimalInput(event.target.value);
+    setInputEmpty(event.target.value === "");
+  }
 
   async function onSubmit(event) {
     event.preventDefault();
@@ -34,6 +38,7 @@ export default function Home() {
         );
       }, data.result.length * 30); // Adjust the delay per character as needed
       setAnimalInput("");
+      setInputEmpty(true);
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -76,9 +81,13 @@ export default function Home() {
             name="animal" 
             placeholder="Enter a prompt" 
             value={animalInput} 
-            onChange={(e) => setAnimalInput(e.target.value)} 
+            onChange={handleInput}
           />
-          <input type="submit" value="Reply" /> 
+          <input 
+            type="submit" 
+            value="Reply" 
+            disabled={inputEmpty}
+          /> 
         </form>
         <div className={styles.result}>{result}</div>
         
