@@ -47,11 +47,14 @@ export default function Home() {
       <Head>
         <title>Raccoon Gpt</title>
         <link rel="icon" href="/fav.png" />
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css"/>
+        
       </Head>
 
       <main className={styles.main}>
         <img src="/fav.png" className={styles.icon} />
         <h3>kenTom™️</h3>
+        <p className={styles.description}>Powered By Raccoon254™️</p>
         <div className={styles.chatContainer}>
         {messages.map((item, index) => (
             <div key={index} className={styles.messageCont}>
@@ -67,15 +70,15 @@ export default function Home() {
           ))}
 
           </div>
-        <form onSubmit={onSubmit}>
-          <input
-            type="text"
-            name="animal"
-            placeholder="Enter a prompt"
-            value={animalInput}
-            onChange={(e) => setAnimalInput(e.target.value)}
+        <form onSubmit={onSubmit}> 
+          <input 
+            type="text" 
+            name="animal" 
+            placeholder="Enter a prompt" 
+            value={animalInput} 
+            onChange={(e) => setAnimalInput(e.target.value)} 
           />
-          <input type="submit" value="Reply" />
+          <input type="submit" value="Reply" /> 
         </form>
         <div className={styles.result}>{result}</div>
         
